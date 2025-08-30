@@ -22,7 +22,8 @@ export default function SignInPage() {
   const onSubmit = async (data: SignInValues) => {
     try {
       const response = await mutateAsync(data);
-      secureLocalStorage.setItem(AUTH_KEY, response.data);
+      console.log(response)
+      secureLocalStorage.setItem(AUTH_KEY, response.detail);
 
       window.location.replace("/home/chats");
     } catch (error) {

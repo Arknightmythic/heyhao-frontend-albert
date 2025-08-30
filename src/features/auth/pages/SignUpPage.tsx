@@ -32,7 +32,7 @@ export default function SignUpPage() {
         formData.append("photo", data.photo)
 
         const response = await mutateAsync(formData)
-        secureLocalStorage.setItem(AUTH_KEY,response.data)
+        secureLocalStorage.setItem(AUTH_KEY,response.detail)
 
         window.location.replace('/home/chats')
     } catch (error) {
