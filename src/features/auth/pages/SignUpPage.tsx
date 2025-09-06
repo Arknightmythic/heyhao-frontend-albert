@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import CarouselImages from "../components/carouselImages";
+
 import { signUpSchema, type SignUpValues } from "../utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSignUp } from "../hooks/useSignUp";
@@ -7,6 +7,7 @@ import secureLocalStorage from "react-secure-storage";
 import { AUTH_KEY } from "../../../shared/utils/constant";
 import { AxiosError } from "axios";
 import { Link } from "react-router";
+import CarouselImages from "../components/CarouselImages";
 
 export default function SignUpPage() {
   const {

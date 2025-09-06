@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import CarouselImages from "../components/carouselImages";
+import CarouselImages from "../components/CarouselImages";
 import { useForm } from "react-hook-form";
 import { signInSchema, type SignInValues } from "../utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -166,7 +166,7 @@ export default function SignInPage() {
                       </label>
                     </div>
                     <Link
-                      to="forget-password.html"
+                      to="/forgot-password"
                       className="hover:underline font-medium leading-[20px] text-heyhao-secondary text-end"
                     >
                       Forget My password

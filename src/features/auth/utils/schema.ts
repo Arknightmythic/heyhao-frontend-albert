@@ -13,6 +13,17 @@ export const signInSchema = signUpSchema.pick({
     password:true
 })
 
+export const forgotPasswordSchema = signUpSchema.pick({
+    email:true
+})
 
+export const updatePasswordSchema = z.object({
+    password:z.string().min(8,  {message:"string must contain at least 8 characters(s)"}),
+    confirmPassword:z.string().min(8,  {message:"string must contain at least 8 characters(s)"})
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",})
+
+export type UpdatePasswordValues = z.infer<typeof updatePasswordSchema>   
 export type SignUpValues = z.infer<typeof signUpSchema>
 export type SignInValues = z.infer<typeof signInSchema>
+export type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>
