@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+
 import CarouselImages from "../components/CarouselImages";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +8,8 @@ import {
 } from "../utils/schema";
 import { useForgotPassword } from "../hooks/useForgotPassword";
 import toast from "react-hot-toast";
+import { AxiosError } from "axios";
+import { Link } from "react-router";
 
 export default function ForgotPasswordPage() {
   const {
@@ -18,13 +20,17 @@ export default function ForgotPasswordPage() {
     resolver: zodResolver(forgotPasswordSchema),
   });
 
-  const { mutateAsync, isPending} = useForgotPassword();
+  const { mutateAsync, isPending } = useForgotPassword();
   const onSubmit = async (data: ForgotPasswordValues) => {
     try {
       await mutateAsync(data);
-      toast.success(`Reset link has send to email`);
+      toast.success(`Reset link has been sent to your email`);
     } catch (error) {
-      toast.error("email not registered");
+      if (error instanceof AxiosError) {
+        toast.error(error?.response?.data?.message || "An error occurred");
+      } else {
+        toast.error("An unexpected error occurred");
+      }
     }
   };
   return (
