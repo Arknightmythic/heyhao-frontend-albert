@@ -33,9 +33,9 @@ export default function SignUpPage() {
         formData.append("photo", data.photo)
 
         const response = await mutateAsync(formData)
-        secureLocalStorage.setItem(AUTH_KEY,response.detail)
+        secureLocalStorage.setItem(AUTH_KEY,response.data)
 
-        window.location.replace('/home/chats')
+        window.location.replace('/home/discover')
     } catch (error) {
         if (error instanceof AxiosError) {
             return alert(error?.response?.data.message ?? "An error occured")
